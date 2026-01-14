@@ -1,0 +1,25 @@
+#include <stdio.h>
+#include <ctype.h>
+#include <math.h>
+int s[50], t = -1; 
+void push(int x) { s[++t] = x; } int pop() { return s[t--]; }
+int main(){
+char e[50]; int i=0, a, b;
+printf("Insert a postfix notation:: "); 
+scanf("%s", e);
+while(e[i]) {
+if(isdigit(e[i])) push(e[i] - '0');
+else {
+b=pop(); a=pop();
+if(e[i]=='+') push(a+b);
+else if(e[i]=='-') push(a-b);
+else if(e[i]=='*') push(a*b);
+else if(e[i]=='/') push(a/b);
+else if(e[i]=='%') push(a%b); 
+else if(e[i]=='^') push(pow(a,b));
+}
+i++;
+}
+printf("\nResult :: %d\n", pop());
+return 0;
+}

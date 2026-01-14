@@ -1,0 +1,22 @@
+#include <stdio.h>
+#include <ctype.h>
+char s[100]; int t=-1;
+void push(char x) { s[++t] = x; }
+char pop() { return t==-1?-1: s[t--]; }
+int pr(char x) 
+{ return x=='^'?3:(x=='*'||x=='/'||x=='%')?2:(x=='+'||x=='-')?1:0; }
+int main(){
+char e[100], x; int i=0;
+printf("Enter Infix expression: ");
+scanf("%s", e); printf("Postfix expression: ");
+while(e[i]) {
+if(isalnum(e[i])) printf("%c", e[i]);
+else if(e[i] == '(') push(e[i]);
+else if(e[i] == ')') 
+while((x=pop()) != '(') printf("%c", x);
+else { while(t!=-1 && pr(s[t]) >= pr(e[i])) printf("%c", pop()); push(e[i]); }
+i++;
+}
+while(t != -1) printf("%c", pop());
+return 0;
+}

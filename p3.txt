@@ -1,0 +1,43 @@
+#include <stdio.h>
+#include <stdlib.h>
+#define MAX 2
+int stack[MAX], top = -1, i, j, ch;
+void push() {
+if(top==MAX-1)
+printf("OVERFLOW\n");
+else { printf("Enter the element to be inserted: ");
+scanf("%d", &stack[++top]); }
+}
+void pop() {
+if(top ==-1)
+printf("UNDERFLOW\n");
+else
+printf("The poped element: %d\n", stack[top-- ]);
+}
+void display() { if(top ==-1) 
+printf("STACK IS EMPTY\n");
+else
+for(i = top; i >= 0; i--) 
+printf("%d\n", stack[i]);
+}
+void palindrome() { if(top == -1) { printf("STACK IS EMPTY\n"); return; } 
+int isPal = 1; for(i = 0, j = top; i < j; i++, j--) 
+if(stack[i] != stack[j]) isPal = 0;
+ printf(isPal? "It is palindrome number\n": "It is not a palindrome number\n");
+}
+int main() {
+while(1) 
+{ printf("\n---STACK OPERATIONS----\n1.Push\n2.Pop\n3.Palindrome \n4.Display\n5.Exit\n-\nEnter your choice: ");
+scanf("%d", &ch);
+switch(ch) {
+case 1: push(); break;
+case 2: pop(); break;
+case 3: palindrome(); break;
+case 4: display(); 
+break; 
+case 5: exit(0); 
+default: printf("Invalid choice\n");
+}
+}
+return 0;
+}

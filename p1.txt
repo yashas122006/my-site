@@ -1,0 +1,22 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+struct Day { char *n, *a; int d; };
+void create(struct Day **c, int s) {*c = malloc(s*sizeof(struct Day));}
+void read(struct Day *c, int s) { char b[99];
+for (int i=0; i<s; i++) {
+printf("Enter details for Day %d:\nEnter the day name: ", i+1); scanf("%s", b);
+c[i].n = strcpy(malloc(strlen(b)+1), b);
+printf("Enter the date: "); scanf("%d", &c[i].d);
+printf("Enter the activity for the day: "); scanf(" %[^\n]", b);
+c[i].a= strcpy(malloc(strlen(b)+1), b);
+}
+}
+void display(struct Day *c, int s) { printf("\nweek's Activity Details:\n"); for (int i=0; i<s; i++)
+printf("Day %d:\nDay Name: %s\nDate: %d\nActivity: %s\n\n", i+1, c[i].n, c[i].d, c[i].a);
+}
+int main() { int s; struct Day *c;
+printf("Enter the number of days in the week:");
+scanf("%d",&s);create(&c,s);read(c,s);display(c, s); 
+return 0;
+}

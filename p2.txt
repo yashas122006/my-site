@@ -1,0 +1,24 @@
+#include <stdio.h>
+int len(char *s) { int i=0; while(s[i]) i++; return i; }
+int match(char *s, char *p) { int i=0; while(p[i]) {
+if(s[i]==p[i]) return i; i++; } return -1;}
+void replace(char *s, char *p, char *r) {
+char ans[99]; int i=0, j=0, k, f=0, pl=len(p);
+while(s[i]) {
+if(match(&s[i], p)==0) { for(k=0; r[k]; k++) ans[j++]=r[k]; i+=pl; f=1;}
+else ans[j++] = s[i++];
+}
+ans[j]='\0';
+if(f) printf("\nThe resultant string is\n%s\n", ans);
+else printf("\nPattern not found.\n");
+}
+int main(){
+char s[99], p[50], r[50]; printf("Enter a string\n");
+scanf(" %[^\n]", s);
+printf("Enter a search string\n"); 
+scanf(" %[^\n]", p); 
+printf("Enter a replace string\n"); 
+scanf(" %[^\n]", r);
+replace(s, p, r); 
+return 0;
+}
